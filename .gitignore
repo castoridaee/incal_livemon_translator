@@ -1,0 +1,11 @@
+.venv/
+.vscode/
+*.xlsx
+*.xls
+*.log
+*.xlsx
+exampleFiles/
+2801checkoutHT/
+2801checkoutRT/
+2802checkoutHT/
+2802checkoutRT/
