@@ -6,17 +6,6 @@ from datetime import datetime
 
 # currently only supports incal shasta livemon logs
 
-# for now, this script takes in a path filled with BI livemonitor logs, reads
-# them all into a structured dataframe (does some unit conversions etc), then
-# outputs an xlsx. Once I decide on best data analysis flow, I'll update to do
-# more stuff in here, possibly:
-# 1. add burn-in board column rather than just Slots
-# 2. map directly to ECID of units rather than just slot/DUT combinations
-# 3. some default plotting using seaborn or bokeh (maybe include this in burnin
-#    report)
-# 4. spec limits and "live" alerts (ex., rerun everytime something in some ftp
-#    directory gets changed, generate an email showing out of spec stuff)
-
 # The listOfConditions is used to define the multi index of the dataframe, and
 # also to detect what's what in the datalog
 # the last few of this list of conditions are ones that I made
@@ -49,7 +38,6 @@ def main():
                     line, totalDF, os.path.basename(fp.name), lineNum)
                 line = fp.readline()
                 lineNum = lineNum + 1
-    # pd.MultiIndex.from_frame()
     dfIndex = list(set(listOfConditions) & set(list(totalDF.columns.values)))
     totalDF.set_index(dfIndex, inplace=True, append=True)
     directory = os.path.dirname(fp.name).strip(".").strip("\\")
